@@ -40,7 +40,7 @@ router.put("/:id", (req, res) => {
   if (!isFilled(name) || !isFilled(email)) {
     return res.status(400).json({ error: "name and email are required" });
   }
-  if (!email.includes("@")) {
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
     return res.status(400).json({ error: "email must be a valid email address" });
   }
 
